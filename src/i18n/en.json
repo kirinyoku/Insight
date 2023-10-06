@@ -1,11 +1,48 @@
 {
   "Index": {
-    "banner": "Insight is now public!",
-    "title": {
-      "1st-part": "Talks with your",
-      "2nd-part": "documents"
+    "banner": "BETA is available now! 🎉",
+    "headline": "Unlock the Power of Your PDFs with",
+    "description": "Insight is a web service for natural language chat with your PDFs, making it faster and easier to find information, summarize, and explore related topics.",
+    "cta-button": "Get started",
+    "benefits": {
+      "title": "What can Insight do for you?",
+      "subtitle": "Here are some of the benefits that Insight can offer you:",
+      "benefit-1": {
+        "title": "Instant Information",
+        "description": "Save time and effort by finding the information you need without having to read the whole document."
+      },
+      "benefit-2": {
+        "title": "Interactive Learning",
+        "description": "Improve your understanding and retention by asking questions and getting feedback from the AI."
+      },
+      "benefit-3": {
+        "title": "Insightful Discovery",
+        "description": "Discover new insights and connections by exploring related topics and sources suggested by the AI."
+      },
+      "benefit-4": {
+        "title": "Innovative Creation",
+        "description": "Enhance your productivity and creativity by using Insight as a tool for research, learning, and writing."
+      }
     },
-    "description": "Insight allows you to have conversation with any PDF document. Simply upload your file and start asking questions right away.",
-    "action-btn": "Get Started"
+    "guide": {
+      "title": "Ready to try?",
+      "subtitle": "To use Insight, you need to take the following steps:",
+      "steps": {
+        "step": "Step",
+        "step-1": {
+          "title": "Sign up for an account",
+          "description": "Either starting out with a free plan or choose our",
+          "link": "pro plan."
+        },
+        "step-2": {
+          "title": "Upload your PDF file",
+          "description": "We'll process your file and make it ready for you to chat with."
+        },
+        "step-3": {
+          "title": "Start asking questions",
+          "description": "It's that simple. Try out Quill today - it really takes less than a minute."
+        }
+      }
+    }
   }
 }
