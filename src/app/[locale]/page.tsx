@@ -1,13 +1,9 @@
-"use client";
 import Link from "next/link";
 import Image from "next/image";
 import Container from "@/components/layout/Container";
 import { ArrowRight } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
-
-import "@/styles/globals.css";
-import { useEffect } from "react";
 
 export default function Home() {
   const i18n = useTranslations("Index");
