@@ -2,6 +2,7 @@ import { cn } from "@/lib/utils";
 import { Inter } from "next/font/google";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";
+import Navbar from "@/components/Navbar";
 import type { Metadata } from "next";
 import "@/styles/globals.css";
 
@@ -48,6 +49,7 @@ export default async function RootLayout({
       >
         {/* NextIntlClientProvider for i18n client components */}
         <NextIntlClientProvider locale={locale} messages={messages}>
+          <Navbar />
           {children}
         </NextIntlClientProvider>
       </body>
