@@ -14,7 +14,7 @@ export default function Home() {
       <Container className="mb-12 mt-28 sm:mt-40 flex flex-col items-center justify-center text-center">
         <div
           role="banner"
-          className="mx-auto mb-4 flex max-w-fit items-center justify-center space-x-2 overflow-hidden rounded-full borded border-gray-200 bg-white px-7 py-2 shadow-md backdrop-blur transition-all hover:border-gray-300 hover:bg-white/50"
+          className="mx-auto mb-4 flex max-w-fit items-center justify-center space-x-2 overflow-hidden rounded-full borded border-border bg-white px-7 py-2 shadow-md shadow-primary/50 backdrop-blur"
         >
           <p className="text-sm font-semibold text-gray-700">
             {i18n("banner")}
@@ -26,7 +26,7 @@ export default function Home() {
             Insight
           </span>
         </h1>
-        <p className="mt-7 max-w-prose text-zinc-700 sm:text-lg">
+        <p className="mt-7 max-w-prose text-foreground/60 sm:text-lg">
           {i18n("description")}
         </p>
         <Link
@@ -61,14 +61,14 @@ export default function Home() {
           <div>
             <div className="mx-auto max-w-6xl px-6 lg:px-8">
               <div className="mt-12 flow-root sm:mt-24">
-                <div className="-m-2 rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4">
+                <div className="-m-2 rounded-xl bg-foreground/5 p-2 ring-1 ring-inset ring-ring/10 lg:-m-4 lg:rounded-2xl lg:p-4">
                   <Image
                     src="/preview.jpg"
                     alt="preview"
                     width={1364}
                     height={866}
                     quality={100}
-                    className="rounded-md bg-white p-2 sm:p-8 md:p-20 shadow-2xl ring-1 ring-gray-900/10"
+                    className="rounded-md bg-background p-2 sm:p-8 md:p-20 shadow-2xl ring-1 ring-ring/10"
                   />
                 </div>
               </div>
@@ -94,42 +94,42 @@ export default function Home() {
       {/* benefits section */}
       <section className="mx-auto my-24 max-w-5xl">
         <div className="px-6 lg:px-8">
-          <h2 className="my-4 font-bold text-4xl text-gray-900 sm:text-center sm:text-5xl">
+          <h2 className="my-4 font-bold text-4xl text-foreground sm:text-center sm:text-5xl">
             {i18n("benefits.title")}
           </h2>
-          <p className="sm:text-center text-lg text-gray-600 mb-4">
+          <p className="sm:text-center text-lg text-foreground/60 mb-4">
             {i18n("benefits.subtitle")}
           </p>
           <ol className="flex flex-col gap-3">
-            <li className="border-l-8 border-l-primary bg-primary/20 p-2 cursor-pointer">
-              <h3 className="text-2xl text-zinc-800 font-semibold mb-1">
+            <li className="border-l-8 border-l-primary bg-primary/30 p-2 cursor-pointer">
+              <h3 className="text-2xl text-foreground font-semibold mb-1">
                 {i18n("benefits.benefit-1.title")}
               </h3>
-              <p className="text-xl text-zinc-900">
+              <p className="text-xl text-foreground/80">
                 {i18n("benefits.benefit-1.description")}
               </p>
             </li>
-            <li className="border-l-8 border-l-primary bg-primary/20 p-2 cursor-pointer">
-              <h3 className="text-2xl text-zinc-900 font-semibold mb-1">
+            <li className="border-l-8 border-l-primary bg-primary/30 p-2 cursor-pointer">
+              <h3 className="text-2xl text-foreground font-semibold mb-1">
                 {i18n("benefits.benefit-2.title")}
               </h3>
-              <p className="text-xl text-zinc-900">
+              <p className="text-xl text-foreground/80">
                 {i18n("benefits.benefit-2.description")}
               </p>
             </li>
-            <li className="border-l-8 border-l-primary bg-primary/20 p-2 cursor-pointer transition-colors">
-              <h3 className="text-2xl text-zinc-900 font-semibold mb-1">
+            <li className="border-l-8 border-l-primary bg-primary/30 p-2 cursor-pointer transition-colors">
+              <h3 className="text-2xl text-foreground font-semibold mb-1">
                 {i18n("benefits.benefit-3.title")}
               </h3>
-              <p className="text-xl text-zinc-900">
+              <p className="text-xl text-foreground/80">
                 {i18n("benefits.benefit-3.description")}
               </p>
             </li>
-            <li className="border-l-8 border-l-primary bg-primary/20 p-2 cursor-pointer transition-colors">
-              <h3 className="text-2xl text-zinc-900 font-semibold mb-1">
+            <li className="border-l-8 border-l-primary bg-primary/30 p-2 cursor-pointer transition-colors">
+              <h3 className="text-2xl text-foreground font-semibold mb-1">
                 {i18n("benefits.benefit-4.title")}
               </h3>
-              <p className="text-xl text-zinc-900">
+              <p className="text-xl text-foreground/80">
                 {i18n("benefits.benefit-4.description")}
               </p>
             </li>
@@ -141,22 +141,24 @@ export default function Home() {
       <section className="mx-auto mb-24 max-w-5xl">
         <div className="mb-0 sm:mb-8 px-6 lg:px-8">
           <div className="mx-auto max-w-2xl sm:text-center">
-            <h2 className="my-4 font-bold text-4xl text-gray-900 sm:text-5xl">
+            <h2 className="my-4 font-bold text-4xl text-foreground sm:text-5xl">
               {i18n("guide.title")}
             </h2>
-            <p className="text-gray-600 text-lg">{i18n("guide.subtitle")}</p>
+            <p className="text-foreground/80 text-lg">
+              {i18n("guide.subtitle")}
+            </p>
           </div>
         </div>
         <ol className="mb-8 space-y-4 pt-4 md:flex md:space-x-12 md:space-y-0">
           <li className="md:flex-1">
-            <div className="flex flex-col space-y-2 border-l-4 border-zinc-300 py-2 pl-4 md:border-l-0 md:border-t-2 md:pb-0 md:pl-0 md:pt-4">
+            <div className="flex flex-col space-y-2 border-l-4 border-border py-2 pl-4 md:border-l-0 md:border-t-2 md:pb-0 md:pl-0 md:pt-4">
               <span className="text-sm font-medium text-primary">
                 {i18n("guide.steps.step")} 1
               </span>
               <span className="text-xl font-semibold">
                 {i18n("guide.steps.step-1.title")}
               </span>
-              <span className="mt-2 text-zinc-700">
+              <span className="mt-2 text-foreground/80">
                 {i18n("guide.steps.step-1.description")}{" "}
                 <Link
                   href="/pricing"
@@ -168,27 +170,27 @@ export default function Home() {
             </div>
           </li>
           <li className="md:flex-1">
-            <div className="flex flex-col space-y-2 border-l-4 border-zinc-300 py-2 pl-4 md:border-l-0 md:border-t-2 md:pb-0 md:pl-0 md:pt-4">
+            <div className="flex flex-col space-y-2 border-l-4 border-border py-2 pl-4 md:border-l-0 md:border-t-2 md:pb-0 md:pl-0 md:pt-4">
               <span className="text-sm font-medium text-primary">
                 {i18n("guide.steps.step")} 2
               </span>
               <span className="text-xl font-semibold">
                 {i18n("guide.steps.step-2.title")}
               </span>
-              <span className="mt-2 text-zinc-700">
+              <span className="mt-2 text-foreground/80">
                 {i18n("guide.steps.step-2.description")}
               </span>
             </div>
           </li>
           <li className="md:flex-1">
-            <div className="flex flex-col space-y-2 border-l-4 border-zinc-300 py-2 pl-4 md:border-l-0 md:border-t-2 md:pb-0 md:pl-0 md:pt-4">
+            <div className="flex flex-col space-y-2 border-l-4 border-border py-2 pl-4 md:border-l-0 md:border-t-2 md:pb-0 md:pl-0 md:pt-4">
               <span className="text-sm font-medium text-primary">
                 {i18n("guide.steps.step")} 3
               </span>
               <span className="text-xl font-semibold">
                 {i18n("guide.steps.step-3.title")}
               </span>
-              <span className="mt-2 text-zinc-700">
+              <span className="mt-2 text-foreground/80">
                 {i18n("guide.steps.step-3.description")}
               </span>
             </div>
@@ -198,14 +200,14 @@ export default function Home() {
         {/* example image block */}
         <div className="mx-auto max-w-6xl px-6 lg:px-8">
           <div className="mt-16 flow-root sm:mt-24">
-            <div className="-m-2 rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4">
+            <div className="-m-2 rounded-xl bg-foreground/5 p-2 ring-1 ring-inset ring-ring/10 lg:-m-4 lg:rounded-2xl lg:p-4">
               <Image
                 src="/file-upload-preview.jpg"
                 alt="uploading preview"
                 width={1419}
                 height={732}
                 quality={100}
-                className="rounded-md bg-white p-2 sm:p-8 md:p-20 shadow-2xl ring-1 ring-gray-900/10"
+                className="rounded-md bg-background p-2 sm:p-8 md:p-20 shadow-2xl ring-1 ring-ring/10"
               />
             </div>
           </div>
