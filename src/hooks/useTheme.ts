@@ -1,11 +1,7 @@
 import { useState, useEffect } from "react";
 
 export default function useTheme() {
-  const [theme, setTheme] = useState<"light" | "dark">(() => {
-    // Try to get the theme from localStorage, default to "light" if not found
-    const storedTheme = localStorage.getItem("theme");
-    return (storedTheme as "light" | "dark") || "light";
-  });
+  const [theme, setTheme] = useState<"light" | "dark">("light");
 
   useEffect(() => {
     // Update the root class based on the theme
@@ -20,9 +16,6 @@ export default function useTheme() {
           break;
       }
     }
-
-    // Store the theme in localStorage
-    localStorage.setItem("theme", theme);
   }, [theme]);
 
   const changeTheme = (themeName: "light" | "dark") => {
