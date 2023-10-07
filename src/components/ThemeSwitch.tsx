@@ -27,14 +27,14 @@ export default function ThemeSwitch() {
       <MenubarContent className="min-w-fit">
         <MenubarItem
           onClick={() => setTheme("light")}
-          className="flex gap-1 items-center cursor-pointer capitalize"
+          className="flex gap-1 pr-5 items-center cursor-pointer capitalize"
         >
           <Icons.sun className="w-4 h-4" />
           {i18n("navbar.theme.light")}
         </MenubarItem>
         <MenubarItem
           onClick={() => setTheme("dark")}
-          className="flex gap-1 items-center cursor-pointer capitalize"
+          className="flex gap-1 pr-5 items-center cursor-pointer capitalize"
         >
           <Icons.moon className="w-4 h-4" />
           {i18n("navbar.theme.dark")}

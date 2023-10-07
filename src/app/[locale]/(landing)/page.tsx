@@ -101,7 +101,7 @@ export default function Home() {
             {i18n("benefits.subtitle")}
           </p>
           <ol className="flex flex-col gap-3">
-            <li className="border-l-8 border-l-primary bg-primary/30 p-2 cursor-pointer">
+            <li className="border-l-8 border-l-primary bg-primary/30 p-2">
               <h3 className="text-2xl text-foreground font-semibold mb-1">
                 {i18n("benefits.benefit-1.title")}
               </h3>
@@ -109,7 +109,7 @@ export default function Home() {
                 {i18n("benefits.benefit-1.description")}
               </p>
             </li>
-            <li className="border-l-8 border-l-primary bg-primary/30 p-2 cursor-pointer">
+            <li className="border-l-8 border-l-primary bg-primary/30 p-2">
               <h3 className="text-2xl text-foreground font-semibold mb-1">
                 {i18n("benefits.benefit-2.title")}
               </h3>
@@ -117,7 +117,7 @@ export default function Home() {
                 {i18n("benefits.benefit-2.description")}
               </p>
             </li>
-            <li className="border-l-8 border-l-primary bg-primary/30 p-2 cursor-pointer transition-colors">
+            <li className="border-l-8 border-l-primary bg-primary/30 p-2">
               <h3 className="text-2xl text-foreground font-semibold mb-1">
                 {i18n("benefits.benefit-3.title")}
               </h3>
@@ -125,7 +125,7 @@ export default function Home() {
                 {i18n("benefits.benefit-3.description")}
               </p>
             </li>
-            <li className="border-l-8 border-l-primary bg-primary/30 p-2 cursor-pointer transition-colors">
+            <li className="border-l-8 border-l-primary bg-primary/30 p-2">
               <h3 className="text-2xl text-foreground font-semibold mb-1">
                 {i18n("benefits.benefit-4.title")}
               </h3>
