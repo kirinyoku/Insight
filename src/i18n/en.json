@@ -1,5 +1,11 @@
 {
   "Index": {
+    "navbar": {
+      "theme": {
+        "light": "light",
+        "dark": "dark"
+      }
+    },
     "banner": "BETA is available now! 🎉",
     "headline": "Unlock the Power of Your PDFs with",
     "description": "Insight is a web service for natural language chat with your PDFs, making it faster and easier to find information, summarize, and explore related topics.",
