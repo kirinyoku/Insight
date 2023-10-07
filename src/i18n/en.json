@@ -4,6 +4,10 @@
       "theme": {
         "light": "light",
         "dark": "dark"
+      },
+      "auth": {
+        "sign-in": "Sign in",
+        "sign-up": "Sign up"
       }
     },
     "banner": "BETA is available now! 🎉",
