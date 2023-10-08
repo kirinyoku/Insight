@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider, useLocale } from "next-intl";
+import TrpcProvider from "./TrpcProvider";
 
 interface RootProviderProps {
   children: React.ReactNode;
@@ -24,7 +25,7 @@ export default async function RootProvider({ children }: RootProviderProps) {
 
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
-      {children}
+      <TrpcProvider>{children}</TrpcProvider>
     </NextIntlClientProvider>
   );
 }
