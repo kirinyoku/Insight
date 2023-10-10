@@ -10,6 +10,7 @@ import {
   CopyCheck,
   File,
   FileText,
+  Ghost,
   HelpCircle,
   Image,
   Laptop,
@@ -17,6 +18,7 @@ import {
   LucideProps,
   LogOut,
   Lock,
+  MessageSquare,
   MoreVertical,
   Moon,
   Pizza,
@@ -37,6 +39,7 @@ export const Icons = {
   close: X,
   copy: Copy,
   copyCheck: CopyCheck,
+  chat: MessageSquare,
   chevronLeft: ChevronLeft,
   chevronRight: ChevronRight,
   trash: Trash,
@@ -58,6 +61,7 @@ export const Icons = {
   laptop: Laptop,
   logout: LogOut,
   lock: Lock,
+  ghost: Ghost,
   google: ({ ...props }: LucideProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
