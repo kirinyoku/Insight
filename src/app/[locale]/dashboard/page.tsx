@@ -1,6 +1,7 @@
 import { db } from "@/db";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { redirect } from "next/navigation";
+import Dashboard from "@/components/Dashboard";
 
 export default async function DashboardPage() {
   const { getUser } = getKindeServerSession();
@@ -22,7 +23,5 @@ export default async function DashboardPage() {
   // if the user doesn't exist in DB, redirect to the AuthCallback page
   if (!dbUser) redirect("/auth-callback?origin=dashboard");
 
-  return {
-    /* Dashboard Component */
-  };
+  return <Dashboard />;
 }
