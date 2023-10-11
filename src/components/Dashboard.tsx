@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import UploadButton from "./UploadButton";
+import UploadFile from "./UploadFile";
 import { trpc } from "@/app/_trpc/client";
 import { Icons } from "./ui/icons";
 import { Skeleton } from "./ui/skeleton";
@@ -52,7 +52,7 @@ export default function Dashboard() {
         <h2 className="mb-2 font-bold text-5xl text-foreground/80">
           My Documents
         </h2>
-        <UploadButton />
+        <UploadFile />
       </header>
 
       {files && files.length !== 0 ? (
