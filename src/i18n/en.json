@@ -58,5 +58,20 @@
   "AuthCallback": {
     "info": "Setting up your account...",
     "warning": "You will be redirected automatically."
+  },
+  "UploadFile": {
+    "toast-error": {
+      "title": "Something went wrong",
+      "description": "Please try again later."
+    },
+    "upload-file": "Upload file",
+    "dropzone": {
+      "instruction": {
+        "1st": "Click to upload",
+        "2nd": "or drag and drop"
+      },
+      "limit": "up to",
+      "redirect": "Redicreting..."
+    }
   }
 }
