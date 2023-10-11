@@ -7,8 +7,10 @@
       },
       "auth": {
         "sign-in": "Sign in",
-        "sign-up": "Sign up"
-      }
+        "sign-up": "Sign up",
+        "log-out": "Log out"
+      },
+      "dashboard": "Dashboard"
     },
     "banner": "BETA is available now! 🎉",
     "headline": "Unlock the Power of Your PDFs with",
@@ -72,6 +74,16 @@
       },
       "limit": "up to",
       "redirect": "Redicreting..."
+    }
+  },
+  "Dashboard": {
+    "header": "My Documents",
+    "empty": {
+      "title": "It's quite empty here.",
+      "description": "Let's upload your first PDF document."
+    },
+    "file-card": {
+      "delete": "Delete"
     }
   }
 }

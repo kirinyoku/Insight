@@ -1,18 +1,20 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import UploadFile from "./UploadFile";
 import { trpc } from "@/app/_trpc/client";
 import { Icons } from "./ui/icons";
 import { Skeleton } from "./ui/skeleton";
 import { format } from "date-fns";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { enGB, uk } from "date-fns/locale";
 import { Button } from "./ui/button";
 import { useState } from "react";
 
 export default function Dashboard() {
   const locale = useLocale();
+  const i18n = useTranslations("Dashboard");
   const trpcContext = trpc.useContext();
   const [currntlyDeletingFile, setCurrentlyDeletingFile] = useState<
     string | null
@@ -50,7 +52,7 @@ export default function Dashboard() {
     <main className="mx-auto max-w-7xl md:p-10">
       <header className="mt-4 flex flex-col items-start justify-between gap-4 border-b border-border pb-4 sm:flex-row sm:items-center sm:gap-0">
         <h2 className="mb-2 font-bold text-5xl text-foreground/80">
-          My Documents
+          {i18n("header")}
         </h2>
         <UploadFile />
       </header>
@@ -67,10 +69,15 @@ export default function Dashboard() {
                 className="flex flex-col gap-2"
               >
                 <div className="pt-6 px-6 flex w-full items-center justify-between space-x-6">
-                  <div className="h-10 w-10 flex-shrink-0 rounded-full bg-gradient-to-r from-primary to-[#049458]" />
                   <div className="flex-1 truncate">
                     <div className="flex items-center space-x-3">
-                      <h3 className="truncate text-lg font-medium text-foreground/80">
+                      <Image
+                        src="/pdf.svg"
+                        alt="pdf icon"
+                        width={28}
+                        height={28}
+                      />
+                      <h3 className="truncate text-2xl font-medium text-foreground/80">
                         {file.name}
                       </h3>
                     </div>
@@ -103,7 +110,7 @@ export default function Dashboard() {
                     ) : (
                       <Icons.trash className="w-4 h-4" />
                     )}
-                    Delete
+                    {i18n("file-card.delete")}
                   </Button>
                 </div>
               </div>
@@ -119,8 +126,8 @@ export default function Dashboard() {
       ) : (
         <section className="mt-16 flex flex-col items-center gap-2">
           <Icons.ghost className="w-8 h-8 text-foreground/80" />
-          <h3 className="font-semibold text-xl">Pretty empty around here</h3>
-          <p>Let's upload ypur first PDF.</p>
+          <h3 className="font-semibold text-xl">{i18n("empty.title")}</h3>
+          <p>{i18n("empty.description")}</p>
         </section>
       )}
     </main>
