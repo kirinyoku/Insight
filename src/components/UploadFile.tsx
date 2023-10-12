@@ -17,6 +17,7 @@ export default function UploadFile() {
   const i18n = useTranslations("UploadFile");
   const [isOpen, setIsOpen] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
+  const [isUploadingError, setIsUploadingError] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
   const { toast } = useToast();
   const { startUpload } = useUploadThing("pdfUploader");
@@ -34,7 +35,7 @@ export default function UploadFile() {
 
     const interval = setInterval(() => {
       setUploadProgress((prev) => {
-        if (prev >= 95) {
+        if (prev >= 95 || isUploadingError) {
           clearInterval(interval);
           return prev;
         }
@@ -53,6 +54,7 @@ export default function UploadFile() {
     const res = await startUpload(file);
 
     if (!res) {
+      setIsUploadingError(true);
       return toast({
         title: i18n("toast-error.title"),
         description: i18n("toast-error.description"),
@@ -64,6 +66,7 @@ export default function UploadFile() {
     const { key } = fileResponse;
 
     if (!key) {
+      setIsUploadingError(true);
       return toast({
         title: i18n("toast-error.title"),
         description: i18n("toast-error.description"),
@@ -90,6 +93,7 @@ export default function UploadFile() {
         onClick={() => {
           setIsOpen(true);
           setUploadProgress(0);
+          setIsUploadingError(false);
         }}
         asChild
       >
@@ -106,7 +110,11 @@ export default function UploadFile() {
                 <label
                   htmlFor="dropzone-file"
                   className={`flex flex-col items-center justify-center w-full h-full rounded-lg cursor-pointer bg-accent/30 hover:bg-accent/70 ${
-                    uploadProgress === 100 ? "bg-primary/20" : null
+                    uploadProgress === 100
+                      ? "bg-primary/20"
+                      : isUploadingError
+                      ? "bg-destructive/30"
+                      : null
                   } transition-colors`}
                 >
                   <div className="flex flex-col items-center justify-center pt-5 pb-6">
@@ -135,10 +143,12 @@ export default function UploadFile() {
 
                   {isUploading ? (
                     <div className="w-full mt-4 max-w-xs mx-auto">
-                      <Progress
-                        value={uploadProgress}
-                        className="h-1 w-full bg-accent"
-                      />
+                      {!isUploadingError ? (
+                        <Progress
+                          value={uploadProgress}
+                          className="h-1 w-full bg-accent"
+                        />
+                      ) : null}
                       {uploadProgress === 100 ? (
                         <div className="flex gap-1 items-center justify-center text-sm text-foreground/80 text-center pt-2">
                           <Icons.spinner className="w-4 h-4 animate-spin" />{" "}
