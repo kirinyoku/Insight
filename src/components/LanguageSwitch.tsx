@@ -1,4 +1,6 @@
-import Link from "next/link";
+"use client";
+
+import { Link, usePathname } from "@/lib/navigation";
 import Image from "next/image";
 import {
   MenubarContent,
@@ -11,6 +13,7 @@ import { useLocale } from "next-intl";
 // LanguageSwitch component can only be used in the parent Menubar component
 export default function LanguageSwitch() {
   const locale = useLocale();
+  const pathname = usePathname();
   const language = locale === "ua" ? "Українська" : "English";
 
   return (
@@ -19,8 +22,8 @@ export default function LanguageSwitch() {
         <Image
           src={
             locale === "ua"
-              ? "ukraine-flag-icon.svg"
-              : "united-kingdom-flag-icon.svg"
+              ? "/ukraine-flag-icon.svg"
+              : "/united-kingdom-flag-icon.svg"
           }
           width={15}
           height={15}
@@ -30,7 +33,7 @@ export default function LanguageSwitch() {
       </MenubarTrigger>
       <MenubarContent className="min-w-fit">
         <MenubarItem>
-          <Link href="/en" className="w-full flex gap-1">
+          <Link href={pathname} locale="en" className="w-full flex gap-1">
             <Image
               src="/united-kingdom-flag-icon.svg"
               width={15}
@@ -41,7 +44,7 @@ export default function LanguageSwitch() {
           </Link>
         </MenubarItem>
         <MenubarItem>
-          <Link href="/ua" className="w-full flex gap-1">
+          <Link href={pathname} locale="ua" className="w-full flex gap-1">
             <Image
               src="/ukraine-flag-icon.svg"
               width={15}
