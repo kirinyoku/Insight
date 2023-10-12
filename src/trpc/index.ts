@@ -3,6 +3,7 @@ import { privateProcedure, publicProcedure, router } from "./trpc";
 import { TRPCError } from "@trpc/server";
 import { db } from "@/db";
 import { z } from "zod";
+import { UTApi } from "uploadthing/server";
 
 export const appRouter = router({
   authCallback: publicProcedure.query(async () => {
@@ -42,9 +43,10 @@ export const appRouter = router({
     });
   }),
   deleteFile: privateProcedure
-    .input(z.object({ id: z.string() }))
+    .input(z.object({ id: z.string(), key: z.string() }))
     .mutation(async ({ ctx, input }) => {
       const { userId } = ctx;
+      const utapi = new UTApi();
 
       // only its author can delete a file
       const file = await db.file.findFirst({
@@ -56,11 +58,15 @@ export const appRouter = router({
 
       if (!file) throw new TRPCError({ code: "NOT_FOUND" });
 
+      // remove file from database
       await db.file.delete({
         where: {
           id: input.id,
         },
       });
+
+      // remove file from uploadthing
+      await utapi.deleteFiles(input.key);
 
       return file;
     }),
