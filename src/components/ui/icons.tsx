@@ -29,17 +29,20 @@ import {
   RotateCw,
   Settings,
   Search,
+  Send,
   SunMedium,
   Trash,
   Twitter,
   User,
   X,
+  XCircle,
   Unlock,
 } from "lucide-react";
 
 export const Icons = {
   logo: Command,
   spinner: Loader2,
+  send: Send,
   close: X,
   copy: Copy,
   copyCheck: CopyCheck,
@@ -70,6 +73,7 @@ export const Icons = {
   logout: LogOut,
   lock: Lock,
   ghost: Ghost,
+  failed: XCircle,
   google: ({ ...props }: LucideProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
