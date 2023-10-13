@@ -65,7 +65,7 @@ export default function PdfViewer({ url }: PdfViewerProps) {
   }
 
   return (
-    <div className="w-full bg-background rounded-md flex flex-col items-center">
+    <div className="w-full h-full bg-background rounded-md shadow flex flex-col items-center">
       <header className="h-14 w-full border-b border-border flex items-center justify-between px-2">
         <div className="flex items-center gap-1.5">
           <Button
@@ -166,7 +166,7 @@ export default function PdfViewer({ url }: PdfViewerProps) {
       </header>
 
       <div className="flex-1 w-full max-h-screen">
-        <SimpleBar autoHide={false} className="max-h-[calc(100vh-10rem)">
+        <SimpleBar autoHide={false} className="max-h-[calc(100vh-9rem)]">
           <div ref={ref}>
             <Document
               loading={
