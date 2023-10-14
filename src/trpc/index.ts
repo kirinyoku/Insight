@@ -55,9 +55,21 @@ export const appRouter = router({
           id: input.id,
           userId: userId,
         },
+        include: {
+          Message: true,
+        },
       });
 
       if (!file) throw new TRPCError({ code: "NOT_FOUND" });
+
+      // remove the messages associated with a file
+      for (const message of file.Message) {
+        await db.message.delete({
+          where: {
+            id: message.id,
+          },
+        });
+      }
 
       // remove file from database
       await db.file.delete({
