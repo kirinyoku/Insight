@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import UploadFile from "./UploadFile";
 import { trpc } from "@/app/_trpc/client";
 import { Icons } from "./ui/icons";
@@ -51,7 +50,7 @@ export default function Dashboard() {
   return (
     <main className="mx-auto max-w-7xl md:p-10">
       <header className="mt-4 flex flex-col items-start justify-between gap-4 border-b border-border pb-4 sm:flex-row sm:items-center sm:gap-0">
-        <h2 className="mb-2 font-bold text-5xl text-foreground/80">
+        <h2 className="mb-2 font-bold text-5xl text-foreground/90">
           {i18n("header")}
         </h2>
         <UploadFile />
@@ -71,13 +70,7 @@ export default function Dashboard() {
                 <div className="pt-6 px-6 flex w-full items-center justify-between space-x-6">
                   <div className="flex-1 truncate">
                     <div className="flex items-center space-x-3">
-                      <Image
-                        src="/pdf.svg"
-                        alt="pdf icon"
-                        width={28}
-                        height={28}
-                      />
-                      <h3 className="truncate text-2xl font-medium text-foreground/80">
+                      <h3 className="truncate text-2xl font-medium text-foreground/90">
                         {file.name}
                       </h3>
                     </div>
@@ -85,7 +78,7 @@ export default function Dashboard() {
                 </div>
               </Link>
 
-              <div className="px-6 mt-4 grid grid-cols-3 place-items-center py-2 gap-2 text-xs text-foreground/50">
+              <div className="px-6 mt-4 grid grid-cols-3 place-items-center py-2 gap-2 text-xs text-foreground/80">
                 <div className="flex items-center gap-2">
                   <Icons.add className="w-4 h-4" />
                   {format(new Date(file.createdAt), "dd MMM yyyy", {
@@ -99,10 +92,12 @@ export default function Dashboard() {
                 </div>
                 <div>
                   <Button
-                    onClick={() => deleteFile({ id: file.id })}
+                    onClick={async () => {
+                      deleteFile({ id: file.id, key: file.key });
+                    }}
                     variant="ghost"
                     size="sm"
-                    className="text-destructive flex items-center gap-2 font-normal hover:bg-destructive/10 hover:text-destructive"
+                    className="text-destructive flex items-center gap-2 font-normal hover:bg-destructive/20 hover:text-destructive"
                   >
                     {/* Switching the delete button when deleting to a spinner */}
                     {currntlyDeletingFile === file.id ? (
@@ -118,11 +113,11 @@ export default function Dashboard() {
           ))}
         </ul>
       ) : isLoading ? (
-        <>
-          <Skeleton className="h-24 my-2 bg-border" />
-          <Skeleton className="h-24 my-2 bg-border" />
-          <Skeleton className="h-24 my-2 bg-border" />
-        </>
+        <div className="mt-8 grid grid-cols-1 gap-6 divide-y divide-border md:grid-cols-2 lg:grid-cols-3">
+          <Skeleton className="h-28 my-2 bg-border" />
+          <Skeleton className="h-28 my-2 bg-border" />
+          <Skeleton className="h-28 my-2 bg-border" />
+        </div>
       ) : (
         <section className="mt-16 flex flex-col items-center gap-2">
           <Icons.ghost className="w-8 h-8 text-foreground/80" />

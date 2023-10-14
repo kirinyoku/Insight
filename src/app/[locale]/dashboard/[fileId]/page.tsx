@@ -30,11 +30,11 @@ export default async function FilePage({ params }: FilePageProps) {
     <main className="flex-1 justify-between flex flex-col h-[calc(100vh-3.5rem)]">
       <div className="mx-auto w-full max-w-8xl grow lg:flex xl:px-2">
         <section className="flex-1 xl:flex">
-          <div className="px-4 py-2 sm:px-6 lg:pl-8 xl:flex-1 xl:pl-6">
+          <div className="py-2 sm:px-6 lg:px-4 xl:flex-1 xl:px-4">
             <PdfViewer url={file.url} />
           </div>
         </section>
-        <section className="shrink-0 flex-[0.8] my-2 rounded-md overflow-hidden border-t border-border lg:w-96 lg:border-l lg:border-t-0">
+        <section className="shrink-0 flex-[0.9] border-t border-border lg:w-96 lg:border-l lg:border-t-0">
           <ChatWrapper fileId={file.id} />
         </section>
       </div>
