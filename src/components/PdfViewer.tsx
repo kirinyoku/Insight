@@ -83,7 +83,7 @@ export default function PdfViewer({ url }: PdfViewerProps) {
           <div className="flex items-center gap-1.5">
             <Input
               className={cn(
-                "w-8 h-6",
+                "w-8 h-6 px-1 text-center",
                 errors.page && "focus-visible:ring-destructive"
               )}
               {...register("page")}
