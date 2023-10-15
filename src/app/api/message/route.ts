@@ -7,6 +7,18 @@ import { Pinecone } from "@pinecone-database/pinecone";
 import { PineconeStore } from "langchain/vectorstores/pinecone";
 import { openai } from "@/lib/openai";
 import { OpenAIStream, StreamingTextResponse } from "ai";
+import { pinecone, pineconeIndex } from "@/lib/pinecone";
+
+interface SearchResult {
+  pageContent: string;
+  metadata: {
+    fileName: string;
+  };
+}
+
+function customFilter(result: SearchResult, targetFileName: string): boolean {
+  return result.metadata?.fileName === targetFileName;
+}
 
 export const POST = async (req: NextRequest) => {
   const { getUser } = getKindeServerSession();
@@ -44,13 +56,6 @@ export const POST = async (req: NextRequest) => {
     openAIApiKey: process.env.OPENAI_API_KEY,
   });
 
-  // Initialize Pinecone client
-  const pinecone = new Pinecone({
-    apiKey: process.env.PINECONE_API_KEY!,
-    environment: "gcp-starter",
-  });
-  const pineconeIndex = pinecone.Index("insight");
-
   // Getting a vectorized PDF file from Pinecone DB.
   const vectorStore = await PineconeStore.fromExistingIndex(embeddings, {
     /* 
@@ -62,74 +67,70 @@ export const POST = async (req: NextRequest) => {
     pineconeIndex,
   });
 
-  // Perform similarity search.
-  const results = await vectorStore.similaritySearch(message, 4);
+  try {
+    // Search for similar messages using the file ID as context
+    const results = await vectorStore.similaritySearch(message, 1, {
+      filter: (result: SearchResult) => customFilter(result, file.id),
+    });
 
-  // Retrieve 7 previous file messages.
-  const prevMessages = await db.message.findMany({
-    where: {
-      fileId,
-    },
-    orderBy: {
-      createdAt: "asc",
-    },
-    take: 7,
-  });
+    // Retrieve 7 previous file messages.
+    const prevMessages = await db.message.findMany({
+      where: { fileId },
+      orderBy: { createdAt: "asc" },
+      take: 6,
+    });
+    const formattedPrevMessages = prevMessages.map((msg) => ({
+      role: msg.isUserMessage ? "user" : "assistant",
+      content: msg.text,
+    }));
 
-  const formattedPrevMessages = prevMessages.map((message) => ({
-    role: message.isUserMessage ? ("user" as const) : ("assistant" as const),
-    content: message.text,
-  }));
+    // Construct a context string with previous conversation, results, and user input
+    const context = `PREVIOUS CONVERSATION:${formattedPrevMessages.map(
+      (msg) => {
+        if (msg.role === "user") return `User:${msg.content}\n`;
+        return `Assistant:${msg.content}\n`;
+      }
+    )}CONTEXT:${results
+      .map((r) => r.pageContent)
+      .join("\n\n")}USER INPUT:${message}`;
 
-  // Getting a response from the OpenAI GPT model
-  const response = await openai.chat.completions.create({
-    model: "gpt-3.5-turbo",
-    temperature: 0, // Controls randomness in the model's output. A value of 0 makes the output deterministic.
-    stream: true, // Indicates that the completions should be streamed as they are generated.
-    // An array of message objects representing a conversation history for the model to consider when generating a response.
-    messages: [
-      {
-        role: "system",
-        content:
-          "Use the following pieces of context (or previous conversaton if needed) to answer the users question in markdown format.",
-      },
-      {
-        role: "user",
-        content: `Use the following pieces of context (or previous conversaton if needed) to answer the users question in markdown format. \nIf you don't know the answer, just say that you don't know, don't try to make up an answer.
-        
-  \n----------------\n
-  
-  PREVIOUS CONVERSATION:
-  ${formattedPrevMessages.map((message) => {
-    if (message.role === "user") return `User: ${message.content}\n`;
-    return `Assistant: ${message.content}\n`;
-  })}
-  
-  \n----------------\n
-  
-  CONTEXT:
-  ${results.map((r) => r.pageContent).join("\n\n")}
-  
-  USER INPUT: ${message}`, // The user's message is included in the conversation history.
-      },
-    ],
-  });
-
-  // Initialize response stream
-  const stream = OpenAIStream(response, {
-    async onCompletion(completion) {
-      // When the stream ends, the answer message will be added to the database.
-      await db.message.create({
-        data: {
-          text: completion,
-          isUserMessage: false,
-          fileId: fileId,
-          userId: userId,
+    // Use a system message to instruct the model
+    const response = await openai.chat.completions.create({
+      model: "gpt-3.5-turbo",
+      temperature: 0.7, // Controls randomness in the model's output. A value of 0 makes the output deterministic.
+      stream: true, // Indicates that the completions should be streamed as they are generated.
+      // An array of message objects representing a conversation history for the model to consider when generating a response.
+      messages: [
+        {
+          role: "system",
+          content:
+            "You have access to a PDF document. Please use the information from the document to answer the user's question.",
         },
-      });
-    },
-  });
+        {
+          role: "user",
+          content: context, // Provide the context here
+        },
+      ],
+    });
 
-  // Return streaming text response
-  return new StreamingTextResponse(stream);
+    const stream = OpenAIStream(response, {
+      async onCompletion(completion) {
+        // When the stream ends, the answer message will be added to the database.
+        await db.message.create({
+          data: {
+            text: completion,
+            isUserMessage: false,
+            fileId,
+            userId,
+          },
+        });
+      },
+    });
+
+    // Return streaming text response
+    return new StreamingTextResponse(stream);
+  } catch (error) {
+    console.error("Error searching for similar messages:", error);
+    return new Response("InternalServerError", { status: 500 });
+  }
 };
