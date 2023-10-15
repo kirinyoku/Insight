@@ -8,12 +8,15 @@ import { Icons } from "./ui/icons";
 import { buttonVariants } from "./ui/button";
 import { trpc } from "@/app/_trpc/client";
 import { ChatContextProvider } from "./ChatContext";
+import { useTranslations } from "next-intl";
 
 interface ChatWrapperProps {
   fileId: string;
 }
 
 export default function ChatWrapper({ fileId }: ChatWrapperProps) {
+  const i18n = useTranslations("chat");
+
   const { data, isLoading } = trpc.getFileUploadStatus.useQuery(
     { fileId },
     {
@@ -31,9 +34,9 @@ export default function ChatWrapper({ fileId }: ChatWrapperProps) {
         <div className="flex-1 flex flex-col justify-center items-center mb-28">
           <div className="flex flex-col items-center gap-2">
             <Icons.spinner className="h-8 w-8 text-primary/80 animate-spin" />
-            <h3 className="font-semibold text-xl">Loading...</h3>
+            <h3 className="font-semibold text-xl">{i18n("loading.title")}</h3>
             <p className="text-foreground/70 text-sm">
-              We're preparing your PDF.
+              {i18n("loading.description")}
             </p>
           </div>
         </div>
@@ -48,8 +51,12 @@ export default function ChatWrapper({ fileId }: ChatWrapperProps) {
         <div className="flex-1 flex flex-col justify-center items-center mb-28">
           <div className="flex flex-col items-center gap-2">
             <Icons.spinner className="h-8 w-8 text-primary/80 animate-spin" />
-            <h3 className="font-semibold text-xl">Processing PDF...</h3>
-            <p className="text-foreground/70 text-sm">This won't take long.</p>
+            <h3 className="font-semibold text-xl">
+              {i18n("processing.title")}
+            </h3>
+            <p className="text-foreground/70 text-sm">
+              {i18n("processing.description")}
+            </p>
           </div>
         </div>
 
@@ -63,10 +70,9 @@ export default function ChatWrapper({ fileId }: ChatWrapperProps) {
         <div className="flex-1 flex flex-col justify-center items-center mb-28">
           <div className="flex flex-col items-center gap-2">
             <Icons.failed className="h-8 w-8 text-destructive" />
-            <h3 className="font-semibold text-xl">PDF is too big</h3>
+            <h3 className="font-semibold text-xl">{i18n("error.title")}</h3>
             <p className="text-foreground/70 text-sm">
-              Your <span className="font-medium">Free</span> plan supports up to
-              5 pages per PDF
+              {i18n("loading.description")}
             </p>
             <Link
               href="/dashboard"
@@ -74,7 +80,8 @@ export default function ChatWrapper({ fileId }: ChatWrapperProps) {
                 buttonVariants({ variant: "secondary", size: "sm" })
               )}
             >
-              <Icons.chevronLeft className="h-4 w-4 mr-1" /> Back
+              <Icons.chevronLeft className="h-4 w-4 mr-1" />{" "}
+              {i18n("error.button")}
             </Link>
           </div>
         </div>

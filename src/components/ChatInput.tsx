@@ -1,14 +1,17 @@
-import { useContext, useRef } from "react";
+import { useContext, useRef, useTransition } from "react";
 import { Button } from "./ui/button";
 import { Icons } from "./ui/icons";
 import { Textarea } from "./ui/textarea";
 import { ChatContext } from "./ChatContext";
+import { useTranslations } from "next-intl";
 
 interface ChatInputProps {
   isDisabled?: boolean;
 }
 
 export default function ChatInput({ isDisabled }: ChatInputProps) {
+  const i18n = useTranslations("chat");
+
   const { addMessage, handleInputChange, isLoading, message } =
     useContext(ChatContext);
 
@@ -22,7 +25,7 @@ export default function ChatInput({ isDisabled }: ChatInputProps) {
             <div className="relative">
               <Textarea
                 ref={textareaRef}
-                placeholder="Enter your question..."
+                placeholder={i18n("placeholder")}
                 rows={1}
                 maxRows={4}
                 autoFocus

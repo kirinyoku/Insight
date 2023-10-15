@@ -85,5 +85,21 @@
     "file-card": {
       "delete": "Видалити"
     }
+  },
+  "chat": {
+    "loading": {
+      "title": "Завантаження...",
+      "description": "Ми готуємо ваш PDF-файл."
+    },
+    "processing": {
+      "title": "Обробка PDF...",
+      "description": "Це не займе багато часу."
+    },
+    "error": {
+      "title": "PDF-файл занадто великий",
+      "description": "Підтримується до 5 сторінок на PDF.",
+      "button": "Назад"
+    },
+    "placeholder": "Введіть ваше запитання..."
   }
 }

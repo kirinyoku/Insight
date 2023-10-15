@@ -85,5 +85,21 @@
     "file-card": {
       "delete": "Delete"
     }
+  },
+  "chat": {
+    "loading": {
+      "title": "Loading...",
+      "description": "We're preparing your PDF."
+    },
+    "processing": {
+      "title": "Processing PDF...",
+      "description": "This won't take long."
+    },
+    "error": {
+      "title": "PDF is too big",
+      "description": "Supports up to 5 pages per PDF.",
+      "button": "Back"
+    },
+    "placeholder": "Enter your question..."
   }
 }
