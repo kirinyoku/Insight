@@ -5,6 +5,7 @@ import { PDFLoader } from "langchain/document_loaders/fs/pdf";
 import { Pinecone } from "@pinecone-database/pinecone";
 import { PineconeStore } from "langchain/vectorstores/pinecone";
 import { OpenAIEmbeddings } from "langchain/embeddings/openai";
+import { pinecone, pineconeIndex } from "@/lib/pinecone";
 
 const f = createUploadthing();
 
@@ -24,6 +25,14 @@ export const ourFileRouter = {
       return { userId: user.id };
     })
     .onUploadComplete(async ({ metadata, file }) => {
+      // Checking if the file already exists in the database
+      const isFileExist = await db.file.findFirst({
+        where: {
+          key: file.key,
+        },
+      });
+      if (isFileExist) return;
+
       // Adding a PDF file to the database
       const createdFile = await db.file.create({
         data: {
@@ -50,12 +59,16 @@ export const ourFileRouter = {
         const pageLevelDocs = await loader.load(); // Array containing individual pages of a document
         const pagesAmount = pageLevelDocs.length;
 
-        // Initializes Pinecone, a vector database.
-        const pinecone = new Pinecone({
-          apiKey: process.env.PINECONE_API_KEY!,
-          environment: "gcp-starter",
+        // Add a 'dataset' field to the data to distinguish the source
+        const combinedData = pageLevelDocs.map((document) => {
+          return {
+            ...document,
+            metadata: {
+              fileId: createdFile.id,
+            },
+            dataset: "pdf", // Use a field to indicate the source dataset (e.g., 'pdf')
+          };
         });
-        const pineconeIndex = pinecone.Index("insight");
 
         // Initializes OpenAI embeddings with an API key
         const embeddings = new OpenAIEmbeddings({
@@ -63,7 +76,7 @@ export const ourFileRouter = {
         });
 
         // Stores the vectorized documents in Pinecone
-        await PineconeStore.fromDocuments(pageLevelDocs, embeddings, {
+        await PineconeStore.fromDocuments(combinedData, embeddings, {
           /* 
             There should be a namespace property with file.key data here, 
             but the "Starter" Pinecone plan does not support it.
