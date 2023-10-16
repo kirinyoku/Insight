@@ -2,23 +2,10 @@ import { NextRequest } from "next/server";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { MessageSchema } from "@/lib/validations/message";
 import { db } from "@/db";
-import { OpenAIEmbeddings } from "langchain/embeddings/openai";
-import { Pinecone } from "@pinecone-database/pinecone";
 import { PineconeStore } from "langchain/vectorstores/pinecone";
-import { openai } from "@/lib/openai";
+import { embeddings, openai } from "@/lib/openai";
 import { OpenAIStream, StreamingTextResponse } from "ai";
-import { pinecone, pineconeIndex } from "@/lib/pinecone";
-
-interface SearchResult {
-  pageContent: string;
-  metadata: {
-    fileName: string;
-  };
-}
-
-function customFilter(result: SearchResult, targetFileName: string): boolean {
-  return result.metadata?.fileName === targetFileName;
-}
+import { SearchResult, customFilter, pineconeIndex } from "@/lib/pinecone";
 
 export const POST = async (req: NextRequest) => {
   const { getUser } = getKindeServerSession();
@@ -49,11 +36,6 @@ export const POST = async (req: NextRequest) => {
       fileId: fileId,
       isUserMessage: true,
     },
-  });
-
-  // Initialize OpenAI embeddings generator.
-  const embeddings = new OpenAIEmbeddings({
-    openAIApiKey: process.env.OPENAI_API_KEY,
   });
 
   // Getting a vectorized PDF file from Pinecone DB.
