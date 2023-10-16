@@ -100,6 +100,10 @@
       "description": "Supports up to 5 pages per PDF.",
       "button": "Back"
     },
-    "placeholder": "Enter your question..."
+    "placeholder": "Enter your question...",
+    "messages": {
+      "title": "You're all set!",
+      "description": "Ask your first question to get started."
+    }
   }
 }

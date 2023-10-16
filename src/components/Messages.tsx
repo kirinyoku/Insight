@@ -6,12 +6,15 @@ import { Skeleton } from "./ui/skeleton";
 import { useContext, useEffect, useRef } from "react";
 import { ChatContext } from "./ChatContext";
 import { useIntersection } from "@mantine/hooks";
+import { useTranslations } from "next-intl";
 
 interface MessagesProps {
   fileId: string;
 }
 
 export default function Messages({ fileId }: MessagesProps) {
+  const i18n = useTranslations("chat");
+
   const { isLoading: isAILoading } = useContext(ChatContext);
 
   const { data, isLoading, fetchNextPage } =
@@ -92,9 +95,9 @@ export default function Messages({ fileId }: MessagesProps) {
       ) : (
         <div className="flex flex-1 flex-col items-center justify-center gap-2">
           <Icons.chat className="h-8 w-8 text-primary/70" />
-          <h3 className="font-semibold text-xl">You're all set!</h3>
+          <h3 className="font-semibold text-xl">{i18n("messages.title")}</h3>
           <p className="text-foreground/70 text-sm">
-            Ask your first question to get started.
+            {i18n("messages.description")}
           </p>
         </div>
       )}
