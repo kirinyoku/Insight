@@ -74,4 +74,4 @@ export default forwardRef<HTMLDivElement, MessageProps>(function Message(
       </div>
     </div>
   );
-});
+}).displayName = "Message";
