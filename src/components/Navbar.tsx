@@ -12,6 +12,7 @@ import {
   getKindeServerSession,
 } from "@kinde-oss/kinde-auth-nextjs/server";
 import { useTranslations } from "next-intl";
+import UserMenu from "./UserMenu";
 
 export default function Navbar() {
   const i18n = useTranslations("Index");
@@ -34,26 +35,22 @@ export default function Navbar() {
               Insight
             </span>
           </Link>
-          <div className="flex gap-10 items-center">
-            <Menubar className="bg-background/50">
+          <div className="flex justify-end items-center gap-2 sm:gap-4 w-full">
+            <Menubar className="bg-background/50 max-w-fit hidden sm:flex">
               {/* LanguageSwitch and ThemeSwitch return ManubarMenu as parent component */}
               <LanguageSwitch />
               <ThemeSwitch />
             </Menubar>
             {user ? (
-              <div className="flex gap-3 items-center">
-                <LogoutLink
-                  className={buttonVariants({ variant: "ghost", size: "sm" })}
-                >
-                  {i18n("navbar.auth.log-out")}
-                </LogoutLink>
-                <Link
-                  href="/dashboard"
-                  className={buttonVariants({ size: "sm" })}
-                >
-                  {i18n("navbar.dashboard")}
-                </Link>
-              </div>
+              <UserMenu
+                name={
+                  !user.given_name || !user.family_name
+                    ? "Your Account"
+                    : `${user.given_name} ${user.family_name}`
+                }
+                email={user.email ?? undefined}
+                imageUrl={user.picture ?? undefined}
+              />
             ) : (
               <div className="flex gap-3 items-center">
                 <LoginLink
