@@ -5,7 +5,7 @@ import { db } from "@/db";
 import { PineconeStore } from "langchain/vectorstores/pinecone";
 import { embeddings, openai } from "@/lib/openai";
 import { OpenAIStream, StreamingTextResponse } from "ai";
-import { SearchResult, customFilter, pineconeIndex } from "@/lib/pinecone";
+import { pineconeIndex } from "@/lib/pinecone";
 
 export const POST = async (req: NextRequest) => {
   const { getUser } = getKindeServerSession();
@@ -52,7 +52,7 @@ export const POST = async (req: NextRequest) => {
   try {
     // Search for similar messages using the file ID as context
     const results = await vectorStore.similaritySearch(message, 1, {
-      filter: (result: SearchResult) => customFilter(result, file.id),
+      fileId: file.id,
     });
 
     // Retrieve 7 previous file messages.

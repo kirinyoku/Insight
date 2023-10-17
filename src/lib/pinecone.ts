@@ -8,17 +8,3 @@ export const pinecone = new Pinecone({
 
 // Using a single index name for all data
 export const pineconeIndex = pinecone.Index("insight");
-
-export interface SearchResult {
-  pageContent: string;
-  metadata: {
-    fileName: string;
-  };
-}
-
-export function customFilter(
-  result: SearchResult,
-  targetFileName: string
-): boolean {
-  return result.metadata?.fileName === targetFileName;
-}
