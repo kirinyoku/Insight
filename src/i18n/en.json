@@ -43,8 +43,7 @@
         "step": "Step",
         "step-1": {
           "title": "Sign up for an account",
-          "description": "Either starting out with a free plan or choose our",
-          "link": "pro plan."
+          "description": "Get free access to all our features."
         },
         "step-2": {
           "title": "Upload your PDF file",
@@ -105,5 +104,9 @@
       "title": "You're all set!",
       "description": "Ask your first question to get started."
     }
+  },
+  "metadata": {
+    "title": "Insight - Unlock the Power of Your PDFs.",
+    "description": "Insight is a web service for natural language chat with your PDFs, making it faster and easier to find information, summarize, and explore related topics."
   }
 }
