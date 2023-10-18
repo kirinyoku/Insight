@@ -51,7 +51,7 @@ export const POST = async (req: NextRequest) => {
 
   try {
     // Search for similar messages using the file ID as context
-    const results = await vectorStore.similaritySearch(message, 1, {
+    const results = await vectorStore.similaritySearch(message, 4, {
       fileId: file.id,
     });
 
@@ -79,14 +79,14 @@ export const POST = async (req: NextRequest) => {
     // Use a system message to instruct the model
     const response = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
-      temperature: 0.7, // Controls randomness in the model's output. A value of 0 makes the output deterministic.
+      temperature: 0, // Controls randomness in the model's output. A value of 0 makes the output deterministic.
       stream: true, // Indicates that the completions should be streamed as they are generated.
       // An array of message objects representing a conversation history for the model to consider when generating a response.
       messages: [
         {
           role: "system",
           content:
-            "You have access to a PDF document. Please use the information from the document to answer the user's question.",
+            "Use the following pieces of context (or previous conversaton if needed) to answer the users question in markdown format.",
         },
         {
           role: "user",
