@@ -111,9 +111,9 @@ export default function UploadFile() {
                   htmlFor="dropzone-file"
                   className={`flex flex-col items-center justify-center w-full h-full rounded-lg cursor-pointer bg-accent/30 hover:bg-accent/70 ${
                     uploadProgress === 100
-                      ? "bg-primary/20"
+                      ? "bg-primary/20 hover:bg-primary/50"
                       : isUploadingError
-                      ? "bg-destructive/30"
+                      ? "bg-destructive/30 hover:bg-destructive/50"
                       : null
                   } transition-colors`}
                 >

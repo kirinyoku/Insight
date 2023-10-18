@@ -8,7 +8,6 @@ import { Menubar } from "./ui/menubar";
 import {
   RegisterLink,
   LoginLink,
-  LogoutLink,
   getKindeServerSession,
 } from "@kinde-oss/kinde-auth-nextjs/server";
 import { useTranslations } from "next-intl";

@@ -2,10 +2,9 @@ import { db } from "@/db";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { createUploadthing, type FileRouter } from "uploadthing/next";
 import { PDFLoader } from "langchain/document_loaders/fs/pdf";
-import { Pinecone } from "@pinecone-database/pinecone";
 import { PineconeStore } from "langchain/vectorstores/pinecone";
 import { OpenAIEmbeddings } from "langchain/embeddings/openai";
-import { pinecone, pineconeIndex } from "@/lib/pinecone";
+import { pineconeIndex } from "@/lib/pinecone";
 
 const f = createUploadthing();
 
@@ -57,7 +56,6 @@ export const ourFileRouter = {
         const blob = await response.blob();
         const loader = new PDFLoader(blob);
         const pageLevelDocs = await loader.load(); // Array containing individual pages of a document
-        const pagesAmount = pageLevelDocs.length;
 
         // Add a 'dataset' field to the data to distinguish the source
         const combinedData = pageLevelDocs.map((document) => {
