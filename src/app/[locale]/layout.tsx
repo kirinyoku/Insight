@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn, constructMetadata } from "@/lib/utils";
 import { Inter } from "next/font/google";
 import { Toaster } from "@/components/ui/toaster";
 import Navbar from "@/components/Navbar";
@@ -9,10 +9,7 @@ import "simplebar-react/dist/simplebar.min.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata: Metadata = {
-  title: "Insight",
-  description: "Talk with your documents.",
-};
+export const metadata = constructMetadata();
 
 interface RootLayoutProps {
   children: React.ReactNode;
