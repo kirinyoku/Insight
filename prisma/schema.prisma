@@ -12,22 +12,19 @@ generator client {
 }
 
 model User {
-  id      String    @id @unique
-  email   String    @unique
+  id       String  @id @unique
+  email    String  @unique
+  imageUrl String?
+
   File    File[]
   Message Message[]
-
-  stripeCustomerId       String?   @unique @map(name: "stripe_customer_id")
-  stripeSubscriptionId   String?   @unique @map(name: "stripe_subscription_id")
-  stripePriceId          String?   @map(name: "stripe_price_id")
-  stripeCurrentPeriodEnd DateTime? @map(name: "stripe_current_period_end")
 }
 
 enum UploadStatus {
-  PENDING
-  PROCESSING
-  FAILED
-  SUCCESS
+  PENDING // The process of uploading a file to the database.
+  PROCESSING // The file has been successfully uploaded to the database but not yet vectorized.
+  FAILED // One of the stages was not successful.
+  SUCCESS // The file was successfully uploaded and vectorized.
 }
 
 model File {
@@ -35,7 +32,7 @@ model File {
   name String
 
   url          String
-  key          String
+  key          String // Key required for Uploadthing
   uploadStatus UploadStatus @default(PENDING)
 
   createdAt DateTime @default(now())
