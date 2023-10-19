@@ -1,6 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import Container from "@/components/layout/Container";
+import Footer from "@/components/Footer";
 import { ArrowRight } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
@@ -63,12 +66,12 @@ export default function Home() {
               <div className="mt-12 flow-root sm:mt-24">
                 <div className="-m-2 rounded-xl bg-foreground/5 p-2 ring-1 ring-inset ring-ring/10 lg:-m-4 lg:rounded-2xl lg:p-4">
                   <Image
-                    src="/preview.jpg"
+                    src={"/preview.webp"}
                     alt="preview"
-                    width={1364}
-                    height={866}
+                    width={1920}
+                    height={916}
                     quality={100}
-                    className="rounded-md bg-background p-2 sm:p-8 md:p-20 shadow-2xl ring-1 ring-ring/10"
+                    className="rounded-md bg-background shadow-2xl ring-1 ring-ring/10"
                   />
                 </div>
               </div>
@@ -159,13 +162,7 @@ export default function Home() {
                 {i18n("guide.steps.step-1.title")}
               </span>
               <span className="mt-2 text-foreground/80">
-                {i18n("guide.steps.step-1.description")}{" "}
-                <Link
-                  href="/pricing"
-                  className="text-primary underline underline-offset-2"
-                >
-                  {i18n("guide.steps.step-1.link")}
-                </Link>
+                {i18n("guide.steps.step-1.description")}
               </span>
             </div>
           </li>
@@ -202,17 +199,18 @@ export default function Home() {
           <div className="mt-16 flow-root sm:mt-24">
             <div className="-m-2 rounded-xl bg-foreground/5 p-2 ring-1 ring-inset ring-ring/10 lg:-m-4 lg:rounded-2xl lg:p-4">
               <Image
-                src="/file-upload-preview.jpg"
+                src="/file-upload-preview.webp"
                 alt="uploading preview"
-                width={1419}
-                height={732}
+                width={1919}
+                height={918}
                 quality={100}
-                className="rounded-md bg-background p-2 sm:p-8 md:p-20 shadow-2xl ring-1 ring-ring/10"
+                className="rounded-md bg-background shadow-2xl ring-1 ring-ring/10"
               />
             </div>
           </div>
         </div>
       </section>
+      <Footer />
     </>
   );
 }
