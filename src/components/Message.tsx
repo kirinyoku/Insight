@@ -4,6 +4,7 @@ import { Icons } from "./ui/icons";
 import ReactMarkdown from "react-markdown";
 import { format } from "date-fns";
 import { forwardRef } from "react";
+import Image from "next/image";
 
 interface MessageProps {
   message: ExtendedMessage;
@@ -26,8 +27,10 @@ export default forwardRef<HTMLDivElement, MessageProps>(function Message(
           "relative flex h-8 w-8 aspect-square items-center justify-center",
 
           {
-            "bg-primary/80 order-2 rounded-sm": message.isUserMessage,
-            "bg-foreground order-1 rounded-sm": !message.isUserMessage,
+            "bg-primary/80 order-2 rounded-sm overflow-hidden":
+              message.isUserMessage,
+            "bg-accent order-1 rounded-sm overflow-hidden":
+              !message.isUserMessage,
             invisible: isNextMessageSamePerson,
           }
         )}
@@ -35,7 +38,7 @@ export default forwardRef<HTMLDivElement, MessageProps>(function Message(
         {message.isUserMessage ? (
           <Icons.user className="fill-accent text-accent h-3/4 w-3/4" />
         ) : (
-          <Icons.logo className="fill-ceent text-accent h-3/4 w-3/4" />
+          <Icons.logo className="h-3/4 w-3/4" />
         )}
       </div>
       <div
@@ -46,7 +49,7 @@ export default forwardRef<HTMLDivElement, MessageProps>(function Message(
       >
         <div
           className={cn("px-4 py-2 rounded-lg inline-block text-foreground", {
-            "bg-primary/40": message.isUserMessage,
+            "bg-primary/25": message.isUserMessage,
             "bg-accent": !message.isUserMessage,
             "rounded-br-none":
               !isNextMessageSamePerson && message.isUserMessage,

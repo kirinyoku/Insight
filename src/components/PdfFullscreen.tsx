@@ -58,6 +58,7 @@ export default function PdfFullsreen({ url }: PdfFullscreenProps) {
                   key={index}
                   pageNumber={index + 1}
                   width={width ? width : 1}
+                  className="border border-border shadow-md mb-4 lg:mb-8"
                 />
               ))}
             </Document>

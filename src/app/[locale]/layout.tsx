@@ -3,7 +3,6 @@ import { Inter } from "next/font/google";
 import { Toaster } from "@/components/ui/toaster";
 import Navbar from "@/components/Navbar";
 import RootProvider from "@/components/RootProvider";
-import type { Metadata } from "next";
 import "@/styles/globals.css";
 import "simplebar-react/dist/simplebar.min.css";
 
