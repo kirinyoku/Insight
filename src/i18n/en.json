@@ -54,6 +54,10 @@
           "description": "It's that simple. Try out Quill today - it really takes less than a minute."
         }
       }
+    },
+    "footer": {
+      "design": "Design by ",
+      "development": "Development by "
     }
   },
   "AuthCallback": {
@@ -96,7 +100,7 @@
     },
     "error": {
       "title": "PDF is too big",
-      "description": "Supports up to 5 pages per PDF.",
+      "description": "Currently, this number of pages is not supported.",
       "button": "Back"
     },
     "placeholder": "Enter your question...",
