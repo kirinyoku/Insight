@@ -60,7 +60,7 @@ export default function UserMenu({ email, imageUrl, name }: UserMenuProps) {
         </div>
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild className="cursor-pointer">
-          <Link href="dashboard">{i18n("dashboard")}</Link>
+          <Link href="/dashboard">{i18n("dashboard")}</Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild className="cursor-pointer">
           <LogoutLink>{i18n("auth.log-out")}</LogoutLink>
