@@ -88,7 +88,7 @@ export default function Dashboard() {
                 </div>
                 <div className="flex items-center gap-2">
                   <Icons.chat className="h-4 w-4" />
-                  mocked
+                  {file.Message.length}
                 </div>
                 <div>
                   <Button

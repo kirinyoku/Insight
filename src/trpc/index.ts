@@ -41,6 +41,9 @@ export const appRouter = router({
       where: {
         userId: userId,
       },
+      include: {
+        Message: true,
+      },
     });
   }),
   deleteFile: privateProcedure
