@@ -23,8 +23,6 @@ export default function AuthCallbackPage() {
         router.push("/sign-in");
       }
     },
-    retry: true,
-    retryDelay: 500,
   });
 
   return (
