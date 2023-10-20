@@ -38,7 +38,7 @@ export const POST = async (req: NextRequest) => {
     },
   });
 
-  // Getting a vectorized PDF file from Pinecone DB.
+  // Getting ALL vectors from Pinecone DB.
   const vectorStore = await PineconeStore.fromExistingIndex(embeddings, {
     /* 
       There should be a namespace property with file.key data here, 
@@ -50,16 +50,16 @@ export const POST = async (req: NextRequest) => {
   });
 
   try {
-    // Search for similar messages using the file ID as context
-    const results = await vectorStore.similaritySearch(message, 4, {
+    // Search for a vector by schematic similarity and filtering by fileId.
+    const results = await vectorStore.similaritySearch(message, 1, {
       fileId: file.id,
     });
 
-    // Retrieve 7 previous file messages.
+    // Retrieve 5 previous file messages.
     const prevMessages = await db.message.findMany({
       where: { fileId },
       orderBy: { createdAt: "asc" },
-      take: 6,
+      take: 5,
     });
     const formattedPrevMessages = prevMessages.map((msg) => ({
       role: msg.isUserMessage ? "user" : "assistant",
