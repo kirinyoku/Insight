@@ -6,7 +6,7 @@ export default function Footer() {
   const i18n = useTranslations("Index");
 
   return (
-    <footer className="w-full h-16 bg-background/50 border-t border-border backdrop-blur-lg shadow-primary/10 shadow-inner transition-all">
+    <footer className="w-full h-16 bg-accent border-t-2 border-border">
       <Container>
         <div className="flex justify-between items-center text-center md:text-left h-16 gap-4">
           <p className="text-foreground/70">
@@ -31,9 +31,9 @@ export default function Footer() {
             <a
               href="https://github.com/kirinyoku/Insight"
               target="_blank"
-              className="flex items-center gap-2 hover:text-primary"
+              className="flex items-center gap-2 hover:text-primary text-foreground/80"
             >
-              <Icons.gitHub className="h-6 w-6" />
+              GitHub <Icons.gitHub className="h-6 w-6" />
             </a>
           </p>
         </div>

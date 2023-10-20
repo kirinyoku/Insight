@@ -69,7 +69,7 @@ export default function Home() {
                     src={"/preview.webp"}
                     alt="preview"
                     width={1920}
-                    height={916}
+                    height={1080}
                     quality={100}
                     className="rounded-md bg-background shadow-2xl ring-1 ring-ring/10"
                   />
@@ -201,8 +201,8 @@ export default function Home() {
               <Image
                 src="/file-upload-preview.webp"
                 alt="uploading preview"
-                width={1919}
-                height={918}
+                width={1920}
+                height={1080}
                 quality={100}
                 className="rounded-md bg-background shadow-2xl ring-1 ring-ring/10"
               />

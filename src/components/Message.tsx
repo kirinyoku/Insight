@@ -38,7 +38,7 @@ export default forwardRef<HTMLDivElement, MessageProps>(function Message(
         {message.isUserMessage ? (
           <Icons.user className="fill-accent text-accent h-3/4 w-3/4" />
         ) : (
-          <Icons.logo className="h-3/4 w-3/4" />
+          <Icons.logo />
         )}
       </div>
       <div

@@ -28,6 +28,7 @@ export default function ChatInput({ isDisabled }: ChatInputProps) {
                 placeholder={i18n("placeholder")}
                 rows={1}
                 maxRows={4}
+                maxLength={500}
                 autoFocus
                 onChange={handleInputChange}
                 value={message}
