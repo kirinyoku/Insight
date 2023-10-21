@@ -1,6 +1,7 @@
 import {
   AlertTriangle,
   ArrowRight,
+  Bird,
   Check,
   ChevronLeft,
   ChevronRight,
@@ -58,6 +59,7 @@ export const Icons = {
   media: Image,
   settings: Settings,
   billing: CreditCard,
+  bird: Bird,
   ellipsis: MoreVertical,
   add: Plus,
   warning: AlertTriangle,
