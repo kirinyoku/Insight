@@ -9,6 +9,16 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+export function absoluteUrl(path: string) {
+  if (typeof window !== "undefined") return path;
+
+  if (process.env.SITE_URL) {
+    return `https://${process.env.SITE_URL}${path}`;
+  }
+
+  return `http://localhost:${process.env.PORT ?? 3000}${path}`;
+}
+
 interface MetadataProps {
   title?: string;
   description?: string;
@@ -44,7 +54,7 @@ export function constructMetadata({
       creator: "@kirinyoku",
     },
     icons,
-    metadataBase: new URL("localhost:3000"),
+    metadataBase: new URL(absoluteUrl("")),
     themeColor: "#FFF",
     ...(noIndex && {
       robots: {
