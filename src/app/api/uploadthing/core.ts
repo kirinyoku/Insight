@@ -32,6 +32,17 @@ export const ourFileRouter = {
       });
       if (isFileExist) return;
 
+      // Checking the number of user files
+      const userFiles = await db.file.findMany({
+        where: {
+          userId: metadata.userId,
+        },
+      });
+
+      // User can have no more than 2 files.
+      if (userFiles.length >= 2)
+        throw new Error("The file upload limit has been exceeded.");
+
       // Adding a PDF file to the database
       const createdFile = await db.file.create({
         data: {
