@@ -20,6 +20,9 @@ const nextConfig = {
     config.resolve.alias.encoding = false;
     return config;
   },
+  images: {
+    domains: ["lh3.googleusercontent.com"],
+  },
 };
 const withNextIntl = require("next-intl/plugin")("./i18n.ts");
 
