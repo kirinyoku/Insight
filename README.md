@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Insight
 
-## Getting Started
+Built with the Next.js 13.5 app router, tRPC, TypeScript, Prisma & Tailwind.
 
-First, run the development server:
+> **Warning**
+> This application is a work in progress, with ongoing improvements and enhancement
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## About this project
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Insight is a web service for natural language chat with your PDFs, making it faster and easier to find information, summarize, and explore related topics.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+![Project Preview](https://raw.githubusercontent.com/kirinyoku/Insight/main/public/preview.webp)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Features
 
-## Learn More
+- Next.js 13 `/app` dir
+- Routing, Layouts
+- Metadata files
+- Server and Client Components
+- API Routes and Middlewares
+- Data Fetching, Caching and Mutation using **tRPC**
+- Internationalization using **next-intl**
+- Authentication using **Kinde**
+- ORM using **Prisma**
+- Database on **PlanetScale**
+- UI Components built using **shadcn/ui**
+- Rendering PDF files with **react-pdf**.
+- Embedding PDFs and messages using the **OpenAI GPT API**.
+- Styled using **Tailwind CSS**
+- Validations using **Zod**
+- Written in **TypeScript**
 
-To learn more about Next.js, take a look at the following resources:
+## Getting started
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+To install and run the project:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+1. Clone the repository: `git clone https://github.com/kirinyoku/Insight.git`
+2. Install the dependencies: `npm install`
+3. Create and fill in the .env file. The example .env file is located in the root dir in the file **.env.example**.
+4. Generate Prisma Client with the following command: `prisma generate`
+5. Start the development server: `npm run dev`
+6. Open the application in your browser at _http://localhost:3000_.
 
-## Deploy on Vercel
+## License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+This project is open-source and was created for educational purposes. It is not monetized and encourages you to use and share it with others. It is licensed under the [MIT](https://choosealicense.cm/licenses/mit/) License, which imposes minimal restrictions on usage and distribution.
