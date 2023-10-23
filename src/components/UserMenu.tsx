@@ -25,8 +25,8 @@ export default function UserMenu({ email, imageUrl, name }: UserMenuProps) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild className="overflow-visible">
-        <Button className="rounded-full h-9 w-9 aspect-square bg-accent">
-          <Avatar className="relative w-9 h-9">
+        <Button className="rounded-full h-8 w-8 aspect-square bg-accent">
+          <Avatar className="relative w-8 h-8">
             {imageUrl ? (
               <div className="relative aspect-square h-full w-full">
                 <Image

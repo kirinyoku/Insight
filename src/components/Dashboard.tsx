@@ -48,9 +48,9 @@ export default function Dashboard() {
   }
 
   return (
-    <main className="mx-auto max-w-7xl md:p-10">
+    <main className="mx-auto max-w-7xl px-2 md:p-10">
       <header className="mt-4 flex flex-col items-start justify-between gap-4 border-b border-border pb-4 sm:flex-row sm:items-center sm:gap-0">
-        <h2 className="mb-2 font-bold text-5xl text-foreground/90">
+        <h2 className="mb-2 font-bold text-4xl md:text-5xl text-foreground/90">
           {i18n("header")}
         </h2>
         <UploadFile />
