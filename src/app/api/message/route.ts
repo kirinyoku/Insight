@@ -7,8 +7,6 @@ import { embeddings, openai } from "@/lib/openai";
 import { OpenAIStream, StreamingTextResponse } from "ai";
 import { pineconeIndex } from "@/lib/pinecone";
 
-export const runtime = "edge";
-
 export const POST = async (req: NextRequest) => {
   const { getUser } = getKindeServerSession();
   const user = getUser();
@@ -79,7 +77,7 @@ export const POST = async (req: NextRequest) => {
       .join("\n\n")}USER INPUT:${message}`;
 
     // Use a system message to instruct the model
-    const response = await openai.createChatCompletion({
+    const response = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
       temperature: 0, // Controls randomness in the model's output. A value of 0 makes the output deterministic.
       stream: true, // Indicates that the completions should be streamed as they are generated.

@@ -1,11 +1,9 @@
+import OpenAI from "openai";
 import { OpenAIEmbeddings } from "langchain/embeddings/openai";
-import { Configuration, OpenAIApi } from "openai-edge";
 
-const config = new Configuration({
+export const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
-
-export const openai = new OpenAIApi(config);
 
 // Initialize OpenAI embeddings generator.
 export const embeddings = new OpenAIEmbeddings({
