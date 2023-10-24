@@ -37,9 +37,10 @@ To install and run the project:
 1. Clone the repository: `git clone https://github.com/kirinyoku/Insight.git`
 2. Install the dependencies: `npm install`
 3. Create and fill in the .env file. The example .env file is located in the root dir in the file **.env.example**.
-4. Generate Prisma Client with the following command: `prisma generate`
-5. Start the development server: `npm run dev`
-6. Open the application in your browser at _http://localhost:3000_.
+4. Synchronize the Prisma schema with the database schema. `prisma db push`
+5. Generate Prisma Client with the following command: `prisma generate`
+6. Start the development server: `npm run dev`
+7. Open the application in your browser at _http://localhost:3000_.
 
 ## License
 
